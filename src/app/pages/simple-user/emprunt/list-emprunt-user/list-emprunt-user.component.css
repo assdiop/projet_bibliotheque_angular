@@ -1,0 +1,31 @@
+.table th {
+  white-space: nowrap;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+.btn-sm {
+  border-radius: 1rem;
+}
+
+.back-color {
+  background: rgb(238, 239, 239);
+  position: relative; /* permet au bouton d'être positionné en absolute */
+}
+
+.btn-gradient {
+  background: linear-gradient(90deg, #597294, #162441);
+  color: white;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.text-color{
+  color: 162441;
+}

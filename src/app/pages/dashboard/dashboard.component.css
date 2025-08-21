@@ -1,0 +1,165 @@
+/* Base */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f2f5;
+}
+
+/* Header / Topbar */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: linear-gradient(90deg, #597294, #162441);
+  color: white;
+  z-index: 1100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Hamburger PC */
+.hamburger-pc {
+  display: flex;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-right: 15px;
+}
+@media (max-width: 992px) {
+  .hamburger-pc { display: none; }
+}
+
+/* Logo */
+.topbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+/* Profil */
+.profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+.profile .profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+.profile .profile-name { font-weight: 500; }
+.profile i.profile-chevron { transition: transform 0.3s; }
+
+/* Menu profil */
+.profile-menu {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background: #1f2937;
+  border-radius: 10px;
+  list-style: none;
+  padding: 10px 0;
+  width: 150px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 1200;
+}
+.profile-menu.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.profile-menu li a {
+  display: block;
+  padding: 10px 15px;
+  color: #e5e7eb;
+  text-decoration: none;
+}
+.profile-menu li a:hover { background: rgba(255,255,255,0.1); border-radius: 8px; }
+
+/* Hamburger mobile */
+.hamburger-btn {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  height: calc(100% - 60px);
+  background: rgba(50, 51, 52, 0.95);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 1.5rem 1rem;
+  box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  overflow-y: auto;
+  z-index: 1000;
+  width: 250px;
+}
+.sidebar.hidden { display: none; } /* Masque totalement le sidebar */
+.sidebar ul { list-style: none; padding: 0; margin: 0; }
+.sidebar li { margin-bottom: 1rem; }
+.sidebar li a {
+  display: flex; align-items: center; gap: 10px;
+  color: #e5e7eb; text-decoration: none;
+  padding: 0.5rem 0.75rem; border-radius: 8px;
+  transition: background 0.3s, transform 0.2s;
+}
+.sidebar li a:hover { background: rgba(255,255,255,0.1); transform: translateX(5px); }
+
+/* Sous-menu */
+.submenu { list-style: none; padding-left: 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.submenu.show { max-height: 500px; }
+
+/* Rotation flèches */
+.has-submenu i.fas.fa-chevron-down,
+.profile i.fas.fa-chevron-down.profile-chevron {
+  transition: transform 0.3s;
+}
+.has-submenu i.fas.fa-chevron-down.rotate,
+.profile i.fas.fa-chevron-down.profile-chevron.rotate {
+  transform: rotate(180deg);
+}
+
+/* Main content */
+.main-content {
+  margin-left: 250px;
+  padding: 80px 20px 20px 20px;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+.main-content.full-width { margin-left: 0; width: 100%; }
+
+/* Responsive */
+@media (max-width: 992px) {
+  .hamburger-btn { display: block; }
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .main-content { margin-left: 0; padding-top: 80px; }
+}
+@media (max-width: 768px) {
+  .profile .profile-name { display: none; }
+  .profile i.profile-chevron { display: none; }
+}

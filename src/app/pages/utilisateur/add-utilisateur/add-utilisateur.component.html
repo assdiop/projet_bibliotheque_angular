@@ -1,0 +1,75 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="card form-card shadow-lg">
+        <div class="card-header text-center back-color">
+        <h5 class="text-white mb-0">
+          <i class="fa-solid fa-file-pen me-2"></i> Enregistrement Utilisateur
+        </h5>
+      </div>
+        <div class="card-body p-4">
+          <form #form="ngForm" (ngSubmit)="onSubmit()">
+
+            <!-- Prénom -->
+            <div class="mb-3">
+              <label class="form-label">Prénom</label>
+              <input
+                type="text"
+                class="form-control stylish-input"
+                placeholder="Votre prénom"
+                name="prenom"
+                ngModel
+                required>
+            </div>
+
+            <!-- Nom -->
+            <div class="mb-3">
+              <label class="form-label">Nom</label>
+              <input
+                type="text"
+                class="form-control stylish-input"
+                placeholder="Votre nom"
+                name="nom"
+                ngModel
+                required>
+            </div>
+
+            <!-- email -->
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input
+                type="text"
+                class="form-control stylish-input"
+                placeholder="Votre email"
+                name="email"
+                ngModel
+                required>
+            </div>
+
+            <!-- Sélecteur -->
+            <div class="mb-3">
+              <label class="form-label">Rôle</label>
+              <select class="form-select stylish-input" name="role" ngModel required>
+                <option value="" disabled selected>Choisissez...</option>
+                <option value="admin">ADMIN</option>
+                <option value="user">USER</option>
+              </select>
+            </div>
+
+
+            <!-- Boutons -->
+            <div class="d-flex justify-content-between mt-4">
+              <button type="submit" class="btn-gradient btn btn-success btn-lg px-4 rounded-3 shadow-sm">
+                <i class="fa-solid fa-check me-2"></i>Enregistrer
+              </button>
+              <button [routerLink]="['/listUtilisateur']" type="button" class="btn btn-danger btn-lg px-4 rounded-3 shadow-sm">
+                <i class="fa-solid fa-xmark me-2"></i>Annuler
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

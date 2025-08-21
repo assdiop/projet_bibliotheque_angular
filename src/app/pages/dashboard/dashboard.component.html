@@ -1,0 +1,84 @@
+<!-- Header -->
+<header class="topbar">
+  <!-- Hamburger PC pour cacher/afficher sidebar -->
+  <button class="hamburger-pc" (click)="toggleSidebar()">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Logo -->
+  <div class="logo">
+    <span class="logo-text">Gestion Bibliothèque</span>
+  </div>
+
+  <!-- Profil utilisateur -->
+  <div class="profile" (click)="toggleProfileMenu()">
+    <img src="assets/images/profil.jpg" alt="Profil" class="profile-pic">
+    <span class="profile-name">Abdallah</span>
+    <i class="fas fa-chevron-down profile-chevron" [class.rotate]="profileMenuOpen"></i>
+    <ul class="profile-menu" [class.show]="profileMenuOpen">
+      <!-- <li><a href="#">Profil</a></li> -->
+      <li><a [routerLink]="['/listUserEmprunt']">Emprunt</a></li>
+      <li><a href="#">Déconnexion</a></li>
+    </ul>
+  </div>
+
+  <!-- Hamburger mobile -->
+  <button class="hamburger-btn" (click)="toggleMenu()">
+    <i class="fas" [class.fa-bars]="!isMenuOpen" [class.fa-times]="isMenuOpen"></i>
+  </button>
+</header>
+
+<!-- Sidebar -->
+<nav class="sidebar"
+     [class.open]="isMenuOpen || (!isSmallScreen() && !isSidebarHidden)"
+     [class.hidden]="!isMenuOpen && !isSmallScreen() && isSidebarHidden">
+  <ul class="menu">
+    <li>
+      <a [routerLink]="['']"><i class="fas fa-home"></i> <span class="menu-text">Accueil</span></a>
+    </li>
+
+    <li class="has-submenu">
+      <a href="javascript:void(0)" (click)="toggleSubmenu('produits')">
+        <i class="fas fa-box"></i>
+        <span class="menu-text">CATEGORIE</span>
+        <i class="fas fa-chevron-down float-end" [class.rotate]="isSubmenuOpen('produits')"></i>
+      </a>
+      <ul class="submenu" [class.show]="isSubmenuOpen('produits')">
+        <li><a [routerLink]="['/ajoutCategorie']">Ajouter Catégorie</a></li>
+        <li><a [routerLink]="['/listesCategories']">Listes des Catégories</a></li>
+      </ul>
+    </li>
+
+    <li class="has-submenu">
+      <a href="javascript:void(0)" (click)="toggleSubmenu('clients')">
+        <i class="fas fa-users"></i>
+        <span class="menu-text">LIVRE</span>
+        <i class="fas fa-chevron-down float-end" [class.rotate]="isSubmenuOpen('clients')"></i>
+      </a>
+      <ul class="submenu" [class.show]="isSubmenuOpen('clients')">
+        <li><a [routerLink]="['/ajoutLivre']">Ajouter livre</a></li>
+        <li><a [routerLink]="['/listLivres']">Listes des Livres</a></li>
+      </ul>
+    </li>
+
+    <li class="has-submenu">
+      <a href="javascript:void(0)" (click)="toggleSubmenu('parametre')">
+        <i class="fas fa-users"></i>
+        <span class="menu-text">PARAMETRE</span>
+        <i class="fas fa-chevron-down float-end" [class.rotate]="isSubmenuOpen('parametre')"></i>
+      </a>
+      <ul class="submenu" [class.show]="isSubmenuOpen('parametre')">
+        <li><a [routerLink]="['/listUtilisateur']">Utilisateurs</a></li>
+        <li><a [routerLink]="['/listAuteur']">Auteurs</a></li>
+        <li><a [routerLink]="['/listEmprunt']">Emprunt</a></li>
+      </ul>
+    </li>
+
+
+  </ul>
+</nav>
+
+<!-- Main Content -->
+<div class="main-content" [class.full-width]="isSidebarHidden && !isSmallScreen()">
+  <router-outlet></router-outlet>
+</div>

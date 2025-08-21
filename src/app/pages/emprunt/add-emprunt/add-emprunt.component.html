@@ -1,0 +1,71 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="card form-card shadow-lg">
+        <div class="card-header text-center back-color">
+        <h5 class="text-white mb-0">
+          <i class="fa-solid fa-file-pen me-2"></i>Faire emprunt
+        </h5>
+      </div>
+        <div class="card-body p-4">
+          <form #form="ngForm" (ngSubmit)="onSubmit()">
+
+            <!-- Sélection du livre -->
+            <div class="mb-3">
+              <label class="form-label">Livre</label>
+              <select class="form-select stylish-input" name="livre" ngModel required>
+                <option value="" disabled selected>Choisissez...</option>
+                <option value="etudiant">Livre 1</option>
+                <option value="enseignant">Livre 2</option>
+                <option value="admin">Livre 3</option>
+              </select>
+            </div>
+
+            <!-- Sélection d'utilisateur -->
+            <div class="mb-3">
+              <label class="form-label">Utilisateur</label>
+              <select class="form-select stylish-input" name="utilisateur" ngModel required>
+                <option value="" disabled selected>Choisissez...</option>
+                <option value="etudiant">Awa SY</option>
+                <option value="enseignant">Abdallah</option>
+              </select>
+            </div>
+
+            <!-- Date Emprunt-->
+            <div class="mb-3">
+              <label class="form-label">Date emprunt</label>
+              <input
+                type="date"
+                class="form-control stylish-input"
+                name="dateEmprunt"
+                ngModel
+                required>
+            </div>
+
+            <!-- Date Retour-->
+            <div class="mb-3">
+              <label class="form-label">Date Retour</label>
+              <input
+                type="date"
+                class="form-control stylish-input"
+                name="dateRetour"
+                ngModel
+                required>
+            </div>
+
+            <!-- Boutons -->
+            <div class="d-flex justify-content-between mt-4">
+              <button type="submit" class="btn-gradient btn btn-success btn-lg px-4 rounded-3 shadow-sm">
+                <i class="fa-solid fa-check me-2"></i>Enregistrer
+              </button>
+              <button [routerLink]="['/listEmprunt']" type="button" class="btn btn-danger btn-lg px-4 rounded-3 shadow-sm">
+                <i class="fa-solid fa-xmark me-2"></i>Annuler
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

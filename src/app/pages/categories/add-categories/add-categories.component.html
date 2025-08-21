@@ -1,0 +1,40 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="card form-card shadow-lg">
+        <div class="card-header text-center back-color">
+        <h5 class="text-white mb-0">
+          <i class="fa-solid fa-file-pen me-2"></i> Nouvelle Catégorie
+        </h5>
+      </div>
+        <div class="card-body p-4">
+          <form #form="ngForm" (ngSubmit)="onSubmit()">
+
+            <!-- Nom -->
+            <div class="mb-3">
+              <label class="form-label"><i class="fa-solid fa-user me-2"></i>Nom de la catégorie</label>
+              <input
+                type="text"
+                class="form-control stylish-input"
+                placeholder="Nom de la catégorie ici"
+                name="nom"
+                ngModel
+                required>
+            </div>
+
+            <!-- Boutons -->
+            <div class="d-flex justify-content-between mt-4">
+              <button type="submit" class="btn-gradient btn btn-success btn-lg px-4 rounded-3 shadow-sm">
+                <i class="fa-solid fa-check me-2"></i>Enregistrer
+              </button>
+              <button [routerLink]="['/listesCategories']" type="button" class="btn btn-danger btn-lg px-4 rounded-3 shadow-sm">
+                <i class="fa-solid fa-xmark me-2"></i>Annuler
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

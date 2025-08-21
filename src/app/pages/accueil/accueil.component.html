@@ -1,0 +1,41 @@
+<div id="bookCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+
+    <div
+      *ngFor="let chunk of chunkedBooks; let i = index"
+      class="carousel-item"
+      [ngClass]="{ active: i === 0 }"
+    >
+      <div class="row justify-content-center">
+        <div *ngFor="let book of chunk" class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
+          <div class="card book-card shadow-lg">
+            <img [src]="book.image" class="card-img-top" alt="Book image" />
+            <div class="card-body text-center">
+              <h5 class="card-title">{{ book.title }}</h5>
+              <p class="card-text text-muted">
+                <i class="fa-solid fa-user-pen"></i> {{ book.author }}
+              </p>
+              <p class="card-text text-muted">Publié le 18/08/2025</p>
+              <span
+                class="badge"
+                [ngClass]="book.borrowed ? 'bg-danger' : 'bg-success'"
+              >
+                <i class="fa-solid" [ngClass]="book.borrowed ? 'fa-book' : 'fa-book-open'"></i>
+                {{ book.borrowed ? 'Emprunté' : 'Disponible' }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#bookCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#bookCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>

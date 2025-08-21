@@ -1,0 +1,80 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="card form-card shadow-lg">
+        <div class="card-header text-center back-color">
+        <h5 class="text-white mb-0">
+          <i class="fa-solid fa-file-pen me-2"></i>Enregistrement de livre
+        </h5>
+      </div>
+        <div class="card-body p-4">
+          <form #form="ngForm" (ngSubmit)="onSubmit()">
+
+            <!-- Titre -->
+            <div class="mb-3">
+              <label class="form-label">Titre</label>
+              <input
+                type="text"
+                class="form-control stylish-input"
+                placeholder="Titre du livre ici"
+                name="titre"
+                ngModel
+                required>
+            </div>
+
+            <!-- Sélection de la catégorie -->
+            <div class="mb-3">
+              <label class="form-label">Genre</label>
+              <select class="form-select stylish-input" name="genre" ngModel required>
+                <option value="" disabled selected>Choisissez...</option>
+                <option value="etudiant">Étudiant</option>
+                <option value="enseignant">Enseignant</option>
+                <option value="admin">Administrateur</option>
+              </select>
+            </div>
+
+            <!-- Date -->
+            <div class="mb-3">
+              <label class="form-label">Date de la publication</label>
+              <input
+                type="date"
+                class="form-control stylish-input"
+                name="date"
+                ngModel
+                required>
+            </div>
+
+            <!-- Sélection de la catégorie -->
+            <div class="mb-3">
+              <label class="form-label">Auteur</label>
+              <select class="form-select stylish-input" name="auteur" ngModel required>
+                <option value="" disabled selected>Choisissez...</option>
+                <option value="etudiant">Awa SY</option>
+                <option value="enseignant">Abdallah</option>
+              </select>
+            </div>
+
+            <!-- Checkbox -->
+            <div class="form-check mb-3">
+              <input type="checkbox" class="form-check-input" id="terms" required>
+              <label for="terms" class="form-check-label">
+                Disponible
+              </label>
+            </div>
+
+            <!-- Boutons -->
+            <div class="d-flex justify-content-between mt-4">
+              <button type="submit" class="btn-gradient btn btn-success btn-lg px-4 rounded-3 shadow-sm">
+                <i class="fa-solid fa-check me-2"></i>Enregistrer
+              </button>
+              <button [routerLink]="['/listLivres']" type="button" class="btn btn-danger btn-lg px-4 rounded-3 shadow-sm">
+                <i class="fa-solid fa-xmark me-2"></i>Annuler
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
