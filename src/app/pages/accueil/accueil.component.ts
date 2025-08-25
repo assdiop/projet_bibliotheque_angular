@@ -28,7 +28,7 @@ export class AccueilComponent {
   chunkedBooks: any[] = [];
 
   ngOnInit(): void {
-    this.chunkedBooks = this.chunkArray(this.books, 3);
+    this.chunkedBooks = this.chunkArray(this.books, 6);
   }
 
   chunkArray(arr: any[], size: number): any[] {

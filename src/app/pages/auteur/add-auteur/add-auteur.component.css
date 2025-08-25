@@ -41,4 +41,7 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-
+textarea.stylish-input {
+  resize: vertical; /* autorise redimensionnement vertical uniquement */
+  min-height: 100px; /* taille par défaut confortable */
+}

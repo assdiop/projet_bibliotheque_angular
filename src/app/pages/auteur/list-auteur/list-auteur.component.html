@@ -20,30 +20,26 @@
           <thead class=""><!--table-primary-->
             <tr>
               <th>Nom</th>
-              <th>Prénom</th>
               <th>Biographie</th>
-              <th>Date</th>
-
+              <th>Date Naissance</th>
               <th class="text-center">Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of items; let i = index">
+            <tr *ngFor="let item of paginatedItems; let i = index">
               <td>{{ item.nom }}</td>
-              <td>{{ item.prenom }}</td>
               <td>{{ item.biographie }}</td>
-              <td>{{ item.dateNaissance }}</td>
-
+              <td>{{ item.dateNaissance | date:'dd/MM/yyyy' }}</td>
               <td class="text-center">
-                <button class="btn btn-warning btn-sm me-2">
+                <button class="btn btn-warning btn-sm me-2" (click)="modifierAuteur(item.id)">
                   <i class="fas fa-edit"></i> Modifier
                 </button>
-                <button class="btn btn-danger btn-sm">
+                <button class="btn btn-danger btn-sm" (click)="suppressionAuteur(item.id)">
                   <i class="fas fa-trash-alt"></i> Supprimer
                 </button>
               </td>
             </tr>
-            <tr *ngIf="items.length === 0">
+            <tr *ngIf="listeAuteurs.length === 0">
               <td colspan="5" class="text-center text-muted py-4">
                 <i class="fas fa-box-open fa-2x d-block mb-2"></i>
                 Aucun enregistrement trouvé
@@ -54,28 +50,30 @@
       </div>
     </div>
 
-    <!-- PAGINATION -->
-    <div class="card-footer d-flex justify-content-center">
-      <nav>
-        <ul class="pagination mb-0">
-          <li class="page-item disabled">
-            <a class="page-link">Précédent</a>
-          </li>
-          <li class="page-item active">
-            <a class="page-link">1</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link">2</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link">3</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link">Suivant</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
 
-  </div>
+   <!-- Pagination (affichée seulement si + d'une page) -->
+<div class="card-footer d-flex justify-content-center" *ngIf="totalPages > 1">
+  <nav>
+    <ul class="pagination mb-0">
+
+      <!-- Bouton Précédent -->
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <button class="page-link" (click)="changePage(currentPage - 1)">Précédent</button>
+      </li>
+
+      <!-- Numéros de page -->
+      <li *ngFor="let p of pagesToDisplay"
+          class="page-item"
+          [class.active]="p === currentPage"
+          [class.disabled]="p === '...'">
+          <button class="page-link" *ngIf="p !== '...'" (click)="changePageSafe(p)">{{ p }}</button>
+        <span class="page-link" *ngIf="p === '...'">...</span>
+      </li>
+
+      <!-- Bouton Suivant -->
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <button class="page-link" (click)="changePage(currentPage + 1)">Suivant</button>
+      </li>
+    </ul>
+  </nav>
 </div>

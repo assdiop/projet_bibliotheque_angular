@@ -29,3 +29,7 @@
 .text-color{
   color: 162441;
 }
+
+.page-link {
+  cursor: pointer;
+}
