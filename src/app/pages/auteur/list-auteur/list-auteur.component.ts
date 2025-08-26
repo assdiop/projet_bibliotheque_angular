@@ -18,9 +18,9 @@ import Swal from 'sweetalert2';
 export class ListAuteurComponent {
 
   listeAuteurs: Array<Auteur> = [
-     {id: 1, nom: 'TALL',biographie: 'Écrivain Guinéen', dateNaissance: '2000-02-11' },
+     //{id: 1, nom: 'TALL',biographie: 'Écrivain Guinéen', dateNaissance: '2000-02-11' },
     // {id: 2, nom: 'SOW', biographie: 'Poétesse Malienne', dateNaissance: '1995-07-05'},
-     {id: 3, nom: 'DIALLO', biographie: 'Historien Sénégalais', dateNaissance: '1980-09-12'},
+     //{id: 3, nom: 'DIALLO', biographie: 'Historien Sénégalais', dateNaissance: '1980-09-12'},
     // {id: 4, nom: 'KEITA',biographie: 'Romancière Ivoirienne', dateNaissance: '1975-03-23' },
     // {id: 5, nom: 'BA', biographie: 'Auteur Sénégalaise', dateNaissance: '1929-11-10' },
     // {id: 6, nom: 'Issa', biographie: 'Écrivain Malien', dateNaissance: '1985-06-15'},
