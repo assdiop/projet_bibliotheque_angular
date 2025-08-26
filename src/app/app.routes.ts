@@ -13,6 +13,7 @@ import { ListEmpruntComponent } from './pages/emprunt/list-emprunt/list-emprunt.
 import { AddEmpruntUserComponent } from './pages/simple-user/emprunt/add-emprunt-user/add-emprunt-user.component';
 import { ListEmpruntUserComponent } from './pages/simple-user/emprunt/list-emprunt-user/list-emprunt-user.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { UpdateAuteurComponent } from './pages/auteur/update-auteur/update-auteur.component';
 
 
 export const routes: Routes = [
@@ -63,8 +64,8 @@ export const routes: Routes = [
         },
 
         {
-          path: 'addAuteur/:id',
-          component: AddAuteurComponent,
+          path: 'updateAuteur/:id',
+          component: UpdateAuteurComponent,
         },
 
 

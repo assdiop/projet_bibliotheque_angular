@@ -6,6 +6,8 @@ import { AuteurService } from '../../../services/auteur.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-list-auteur',
   standalone: true,
@@ -16,9 +18,9 @@ import { ToastrService } from 'ngx-toastr';
 export class ListAuteurComponent {
 
   listeAuteurs: Array<Auteur> = [
-    // {id: 1, nom: 'TALL',biographie: 'Écrivain Guinéen', dateNaissance: '2000-02-11' },
+     {id: 1, nom: 'TALL',biographie: 'Écrivain Guinéen', dateNaissance: '2000-02-11' },
     // {id: 2, nom: 'SOW', biographie: 'Poétesse Malienne', dateNaissance: '1995-07-05'},
-    // {id: 3, nom: 'DIALLO', biographie: 'Historien Sénégalais', dateNaissance: '1980-09-12'},
+     {id: 3, nom: 'DIALLO', biographie: 'Historien Sénégalais', dateNaissance: '1980-09-12'},
     // {id: 4, nom: 'KEITA',biographie: 'Romancière Ivoirienne', dateNaissance: '1975-03-23' },
     // {id: 5, nom: 'BA', biographie: 'Auteur Sénégalaise', dateNaissance: '1929-11-10' },
     // {id: 6, nom: 'Issa', biographie: 'Écrivain Malien', dateNaissance: '1985-06-15'},
@@ -44,23 +46,45 @@ export class ListAuteurComponent {
 
   //Modification de l'auteur
   modifierAuteur(id?:number): void{
-    this.router.navigate(['addAuteur',id]);
+    this.router.navigate(['updateAuteur',id]);
   }
 
 
   //Suppression de l'auteur
-  suppressionAuteur(id:any){
-      this.auteurService.deleteAuteur(id).subscribe({
-      next: () => {
-        console.log('Auteur supprimé avec succès');
-        // Affichage du toast après suppression
-        this.toastr.success("Auteur supprimé avec succès");
-        this.afficherLesAuteurs();
-      },
-      error: (err) => console.error('Erreur lors de la suppression', err)
+  suppressionAuteur(id: number): void {
+    Swal.fire({
+      title: 'Êtes-vous sûr ?',
+      text: "Cette action est irréversible !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Oui, supprimer',
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.auteurService.deleteAuteur(id).subscribe({
+          next: () => {
+            Swal.fire(
+              'Supprimé !',
+              "L'auteur a été supprimé avec succès.",
+              'success'
+            );
+            //this.toastr.info("Auteur supprimé avec succès");
+            this.afficherLesAuteurs(); // recharge la liste
+          },
+          error: (err) => {
+            console.error("Erreur suppression :", err);
+            Swal.fire(
+              'Erreur',
+              "Impossible de supprimer l'auteur",
+              'error'
+            );
+          }
+        });
+      }
     });
   }
-
 
 
   //DEBUT PAGINATION

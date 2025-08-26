@@ -1,0 +1,103 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="card form-card shadow-lg">
+        <div class="card-header text-center back-color">
+          <h5 class="text-white mb-0">
+            <i class="fa-solid fa-file-pen me-2"></i> Modification de l'auteur
+          </h5>
+        </div>
+        <div class="card-body p-4">
+          <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+
+            <!-- Nom -->
+            <div class="mb-3">
+              <label class="form-label">Nom</label>
+              <input
+                type="text"
+                class="form-control stylish-input"
+                placeholder="Votre nom"
+                name="nom"
+                [(ngModel)]="auteur.nom"
+                required
+                minlength="2"
+                maxlength="150"
+                #nom="ngModel">
+
+              <!-- erreurs -->
+              <div *ngIf="nom.invalid && nom.touched" class="text-danger small">
+                <div *ngIf="nom.errors?.['required']">
+                  Le nom de l'auteur est obligatoire
+                </div>
+                <div *ngIf="nom.errors?.['minlength']">
+                  Le nom doit contenir au moins 2 caractères
+                </div>
+                <div *ngIf="nom.errors?.['maxlength']">
+                  Le nom ne doit pas dépasser 150 caractères
+                </div>
+              </div>
+            </div>
+
+
+           <!-- Biographie -->
+          <div class="mb-3">
+            <label class="form-label">Biographie</label>
+            <textarea
+              class="form-control stylish-input"
+              placeholder="Votre biographie"
+              name="biographie"
+              [(ngModel)]="auteur.biographie"
+              required
+              maxlength="2000"
+              rows="4"
+              #bio="ngModel"></textarea>
+
+            <!-- erreurs -->
+            <div *ngIf="bio.invalid && bio.touched" class="text-danger small">
+              <div *ngIf="bio.errors?.['required']">
+                La biographie est obligatoire
+              </div>
+              <div *ngIf="bio.errors?.['maxlength']">
+                La biographie ne peut pas dépasser 2000 caractères
+              </div>
+            </div>
+
+            <!-- compteur de caractères (optionnel mais pratique) -->
+            <div class="text-end small text-muted">
+              {{ bio.value?.length || 0 }}/2000 caractères
+            </div>
+          </div>
+
+            <!-- Date de Naissance -->
+            <div class="mb-3">
+              <label class="form-label">Date de Naissance</label>
+              <input
+                type="date"
+                class="form-control stylish-input"
+                name="dateNaissance"
+                [(ngModel)]="auteur.dateNaissance"
+                required
+                #dateNaissance="ngModel"
+                (ngModelChange)="checkPastDate($event)">
+              <div *ngIf="dateNaissance.touched && dateError" class="text-danger small">
+                La date de naissance doit être dans le passé
+              </div>
+            </div>
+
+            <!-- Boutons -->
+            <div class="d-flex justify-content-between mt-4">
+              <button type="submit" class="btn-gradient btn btn-success btn-lg px-4 rounded-3 shadow-sm"
+                      [disabled]="form.invalid || dateError">
+                <i class="fa-solid fa-check me-2"></i>Enregistrer
+              </button>
+              <button [routerLink]="['/listAuteur']" type="button" class="btn btn-danger btn-lg px-4 rounded-3 shadow-sm">
+                <i class="fa-solid fa-xmark me-2"></i>Annuler
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+/* Carte principale */
+.form-card {
+  border-radius: 20px;
+  overflow: hidden;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.back-color{
+  background: #9eb2ce;
+}
+/* Inputs stylisés */
+.stylish-input {
+  border-radius: 12px;
+  padding: 12px;
+  transition: all 0.3s ease;
+  border: 1px solid #ddd;
+}
+
+.stylish-input:focus {
+  border-color: #2575fc;
+  box-shadow: 0px 0px 8px rgba(37, 117, 252, 0.4);
+  transform: scale(1.02);
+}
+
+/* Bouton moderne */
+.btn-gradient {
+  background: linear-gradient(90deg, #597294, #162441);
+  color: white;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-gradient:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0px 8px 20px rgba(37, 117, 252, 0.5);
+}
+
+/* Animation entrée */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+textarea.stylish-input {
+  resize: vertical; /* autorise redimensionnement vertical uniquement */
+  min-height: 100px; /* taille par défaut confortable */
+}

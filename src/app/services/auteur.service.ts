@@ -37,4 +37,9 @@ export class AuteurService {
     return this.http.delete<void>(`${this.apiUrl}/api/auteurs/${id}`);
   }
 
+  // UPDATE
+  updateAuteur(id: number, auteur: Auteur): Observable<Auteur> {
+    return this.http.put<Auteur>(`${this.apiUrl}/api/auteurs/${id}`, auteur);
+  }
+
 }
