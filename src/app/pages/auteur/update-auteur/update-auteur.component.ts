@@ -31,7 +31,7 @@ constructor(private toastr: ToastrService, private router: Router,
 
 
   recuperationAuteur(){
-    const idAuteur = this.activatedRoute.snapshot.paramMap.get('id');
+  const idAuteur = this.activatedRoute.snapshot.paramMap.get('id');
   if (idAuteur) {
     const id = Number(idAuteur); // convertir en number
     this.auteurService.getAuteurById(id).subscribe({

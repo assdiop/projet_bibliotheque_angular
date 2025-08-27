@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { Auteur } from '../../../models/auteur.model';
 import { ToastrService } from 'ngx-toastr';
 import { AuteurService } from '../../../services/auteur.service';

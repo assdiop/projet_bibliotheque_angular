@@ -14,6 +14,7 @@ import { AddEmpruntUserComponent } from './pages/simple-user/emprunt/add-emprunt
 import { ListEmpruntUserComponent } from './pages/simple-user/emprunt/list-emprunt-user/list-emprunt-user.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UpdateAuteurComponent } from './pages/auteur/update-auteur/update-auteur.component';
+import { UpdateLivreComponent } from './pages/livres/update-livre/update-livre.component';
 
 
 export const routes: Routes = [
@@ -46,6 +47,10 @@ export const routes: Routes = [
         {
           path: 'listLivres',
           component: ListLivreComponent
+        },
+        {
+          path: 'updateLivre/:id',
+          component: UpdateLivreComponent
         },
 
         {
