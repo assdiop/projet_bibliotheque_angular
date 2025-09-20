@@ -1,0 +1,49 @@
+<!-- forbidden.component.html -->
+<div class="forbidden-wrap">
+  <div class="bg-gradient"></div>
+
+  <div class="card-403">
+    <div class="badge-403">403</div>
+
+    <h1 class="title">
+      Accès non autorisé
+      <span class="sparkle" aria-hidden="true">✦</span>
+    </h1>
+
+    <p class="subtitle">
+      Vous n’êtes pas autorisé à accéder à cette ressource.
+      <br />
+      Si vous pensez qu’il s’agit d’une erreur, contactez un administrateur.
+    </p>
+
+    <div class="illustration" aria-hidden="true">
+      <!-- SVG décoratif (verrou “glassmorphism”) -->
+      <svg viewBox="0 0 200 200" class="lock">
+        <defs>
+          <linearGradient id="lg" x1="0" x2="1">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.7)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0.2)"/>
+          </linearGradient>
+        </defs>
+        <rect x="35" y="85" width="130" height="90" rx="16" ry="16" fill="url(#lg)" />
+        <path d="M70,85 v-18 a30,30 0 0 1 60,0 v18" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="10" stroke-linecap="round"/>
+        <circle cx="100" cy="125" r="10" fill="rgba(255,255,255,0.8)"/>
+        <rect x="95" y="125" width="10" height="22" rx="4" fill="rgba(255,255,255,0.8)"/>
+      </svg>
+    </div>
+
+    <div class="actions">
+      <!-- <button class="btn btn-primary-neo" (click)="goBack()">
+        ← Retour
+      </button> -->
+
+      <a class="btn btn-primary-neo" [routerLink]="['/']">
+        Accueil
+      </a>
+    </div>
+
+    <div class="helper">
+      Besoin d’un accès ? <a>Contacter l’admin</a>
+    </div>
+  </div>
+</div>

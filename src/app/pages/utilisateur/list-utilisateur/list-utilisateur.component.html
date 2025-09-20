@@ -6,43 +6,77 @@
       <div class="flex-grow-1 text-center">
         <h5 class="mb-0"><i class="fas fa-list"></i> Liste des Utilisateurs</h5>
       </div>
-      <div class="position-absolute end-0 me-3">
-        <button class="btn btn-sm btn-gradient" [routerLink]="['/addUtilisateur']">
-          <i class="fas fa-plus"></i> Ajouter un nouveau Utilisateur
+      <!-- <div class="position-absolute end-0 me-3">
+        <button class="btn btn-sm btn-gradient" [routerLink]="['/register']">
+          <i class="fas fa-plus"></i> Ajouter un nouveau utilisateurs
         </button>
-      </div>
+      </div> -->
     </div>
 
     <!-- TABLE -->
     <div class="card-body p-0">
       <div class="table-responsive">
-        <table class="table table-hover align-middle mb-0">
+
+
+        <table class="table table-hover align-middle mb-0 table-fixed">
+          <colgroup>
+            <col style="width: 15%">  <!-- Username -->
+            <col style="width: 25%">  <!-- Email -->
+            <col style="width: 15%">  <!-- Roles -->
+            <col style="width: 10%">  <!-- Statut -->
+            <col style="width: 40%">  <!-- Actions -->
+          </colgroup>
           <thead class=""><!--table-primary-->
             <tr>
-              <th>Nom</th>
-              <th>Prénom</th>
-              <th>email</th>
-              <th>Role</th>
-
+              <th>Username</th>
+              <th>Email</th>
+              <th>Roles</th>
+              <th>Statut</th>
               <th class="text-center">Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of items; let i = index">
-              <td>{{ item.nom }}</td>
-              <td>{{ item.prenom }}</td>
-              <td>{{ item.email }}</td>
-              <td>{{ item.role }}</td>
 
-              <td class="text-center">
-                <button class="btn btn-warning btn-sm me-2">
-                  <i class="fas fa-edit"></i> Modifier
-                </button>
-                <button class="btn btn-danger btn-sm">
-                  <i class="fas fa-trash-alt"></i> Supprimer
-                </button>
-              </td>
-            </tr>
+            <tr *ngFor="let item of paginatedItems; let i = index">
+      <td class="truncate" [attr.title]="item.username">{{ item.username }}</td>
+      <td class="truncate" [attr.title]="item.email">{{ item.email }}</td>
+      <td class="truncate" [attr.title]="item.roles?.join(', ') || '—'">
+        {{ item.roles?.join(', ') || '—' }}
+      </td>
+      <td>
+        <span class="badge rounded-pill"
+              [ngClass]="item.enabled ? 'text-bg-success' : 'text-bg-danger'">
+          <i class="fas" [ngClass]="item.enabled ? 'fa-check-circle' : 'fa-ban'"></i>
+          {{ item.enabled ? 'Actif' : 'Inactif' }}
+        </span>
+      </td>
+      <td class="actions-cell">
+        <!-- tes boutons inchangés -->
+        <button *ngIf="item.enabled" class="btn btn-sm btn-secondary"
+                (click)="desactiver(item.user_id)">
+          <i class="fas fa-user-slash"></i> Désact
+        </button>
+        <button *ngIf="!item.enabled" class="btn btn-sm btn-success"
+                (click)="activer(item.user_id)">
+          <i class="fas fa-user-check"></i> Activer
+        </button>
+
+        <button class="btn btn-sm btn-primary"
+                (click)="ajouterRole(item.username!, 'ADMIN')">
+          <i class="fas fa-user-shield"></i> Add ADMIN
+        </button>
+        <button class="btn btn-sm btn-warning"
+                (click)="retirerRole(item.username!, 'ADMIN')">
+          <i class="fas fa-user-minus"></i> Ret ADMIN
+        </button>
+
+         <button class="btn btn-sm btn-danger"
+                (click)="supprimer(item.user_id!)">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </td>
+    </tr>
+
             <tr *ngIf="items.length === 0">
               <td colspan="5" class="text-center text-muted py-4">
                 <i class="fas fa-box-open fa-2x d-block mb-2"></i>
@@ -51,31 +85,37 @@
             </tr>
           </tbody>
         </table>
+
+
       </div>
     </div>
 
-    <!-- PAGINATION -->
-    <div class="card-footer d-flex justify-content-center">
-      <nav>
-        <ul class="pagination mb-0">
-          <li class="page-item disabled">
-            <a class="page-link">Précédent</a>
-          </li>
-          <li class="page-item active">
-            <a class="page-link">1</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link">2</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link">3</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link">Suivant</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
 
-  </div>
+   <!-- Pagination (affichée seulement si + d'une page) -->
+<div class="card-footer d-flex justify-content-center" *ngIf="totalPages > 1">
+  <nav>
+    <ul class="pagination mb-0">
+
+      <!-- Bouton Précédent -->
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <button class="page-link" (click)="changePage(currentPage - 1)">Précédent</button>
+      </li>
+
+      <!-- Numéros de page -->
+      <li *ngFor="let p of pagesToDisplay"
+          class="page-item"
+          [class.active]="p === currentPage"
+          [class.disabled]="p === '...'">
+          <button class="page-link" *ngIf="p !== '...'" (click)="changePageSafe(p)">{{ p }}</button>
+        <span class="page-link" *ngIf="p === '...'">...</span>
+      </li>
+
+      <!-- Bouton Suivant -->
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <button class="page-link" (click)="changePage(currentPage + 1)">Suivant</button>
+      </li>
+    </ul>
+  </nav>
+</div>
+</div>
 </div>

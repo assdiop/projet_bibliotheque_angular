@@ -1,10 +1,13 @@
 import { Component, HostListener } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterOutlet,RouterModule],
+  imports: [RouterOutlet,RouterModule, FormsModule, CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -16,6 +19,8 @@ export class DashboardComponent {
   screenWidth: number = window.innerWidth;
 
   submenuOpen: { [key: string]: boolean } = {};
+
+  constructor(public authService: AuthService, private router:Router){}
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -47,7 +52,9 @@ export class DashboardComponent {
   }
 
   isSubmenuOpen(menuName: string): boolean {
+
     return !!this.submenuOpen[menuName];
   }
+
 
 }

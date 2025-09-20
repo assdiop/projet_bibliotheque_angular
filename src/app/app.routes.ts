@@ -15,88 +15,127 @@ import { ListEmpruntUserComponent } from './pages/simple-user/emprunt/list-empru
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UpdateAuteurComponent } from './pages/auteur/update-auteur/update-auteur.component';
 import { UpdateLivreComponent } from './pages/livres/update-livre/update-livre.component';
+import { LoginComponent } from './pages/authentication/login/login.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { myGuardGuard } from './my-guard.guard';
+import { roleGuardGuard } from './role-guard.guard';
+import { loginGuardGuard } from './login-guard.guard';
+import { RegisterComponent } from './pages/authentication/register/register.component';
 
 
 export const routes: Routes = [
 
   {
+      path: 'login',
+      component: LoginComponent,
+      canActivate: [loginGuardGuard],
+  },
+
+  {
+      path: 'register',
+      component: RegisterComponent,
+      //canActivate: [loginGuardGuard],
+  },
+
+  {path: 'app-forbidden',
+    component: ForbiddenComponent
+  },
+
+  {
     path: '',
     component: DashboardComponent,
+    canActivate: [myGuardGuard],
     children:  [
 
         {
           path: '',
-          component: AccueilComponent
+          component: AccueilComponent,
+          canActivate: [myGuardGuard],
         },
 
         {
           path: 'ajoutCategorie',
-          component: AddCategoriesComponent
+          component: AddCategoriesComponent,
+          canActivate: [myGuardGuard,roleGuardGuard],
         },
 
         {
           path: 'listesCategories',
-            component: ListCategorieComponent
+            component: ListCategorieComponent,
+            canActivate: [myGuardGuard,roleGuardGuard],
         },
 
         {
           path: 'ajoutLivre',
-          component: AddLivreComponent
+          component: AddLivreComponent,
+          canActivate: [myGuardGuard,roleGuardGuard],
+
         },
 
         {
           path: 'listLivres',
-          component: ListLivreComponent
+          component: ListLivreComponent,
+          canActivate: [myGuardGuard],
         },
         {
           path: 'updateLivre/:id',
-          component: UpdateLivreComponent
+          component: UpdateLivreComponent,
+          canActivate: [myGuardGuard,roleGuardGuard],
         },
 
         {
           path: 'addUtilisateur',
-          component: AddUtilisateurComponent
+          component: AddUtilisateurComponent,
+          canActivate: [myGuardGuard,roleGuardGuard],
         },
 
         {
           path: 'listUtilisateur',
-          component: ListUtilisateurComponent
+          component: ListUtilisateurComponent,
+          canActivate: [myGuardGuard,roleGuardGuard],
         },
 
         {
           path: 'addAuteur',
-          component: AddAuteurComponent
+          component: AddAuteurComponent,
+          canActivate: [myGuardGuard,roleGuardGuard],
         },
 
         {
           path: 'updateAuteur/:id',
           component: UpdateAuteurComponent,
+          canActivate: [myGuardGuard,roleGuardGuard],
         },
 
 
         {
           path: 'listAuteur',
-          component: ListAuteurComponent
+          component: ListAuteurComponent,
+          canActivate: [myGuardGuard,roleGuardGuard],
         },
 
         {
           path: 'addEmprunt',
-          component: AddEmpruntComponent
+          component: AddEmpruntComponent,
+          canActivate: [myGuardGuard,roleGuardGuard],
         },
 
         {
           path: 'listEmprunt',
-          component: ListEmpruntComponent
+          component: ListEmpruntComponent,
+          canActivate: [myGuardGuard,roleGuardGuard],
         },
 
         {
           path: 'addUserEmprunt',
-          component: AddEmpruntUserComponent
+          component: AddEmpruntUserComponent,
+          canActivate: [myGuardGuard],
         },
 
         {
           path: 'listUserEmprunt',
-          component: ListEmpruntUserComponent
+          component: ListEmpruntUserComponent,
+          canActivate: [myGuardGuard],
         },
 
 

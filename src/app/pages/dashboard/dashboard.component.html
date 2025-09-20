@@ -1,29 +1,38 @@
 <!-- Header -->
 <header class="topbar">
   <!-- Hamburger PC pour cacher/afficher sidebar -->
-  <button class="hamburger-pc" (click)="toggleSidebar()">
+  <button class="hamburger-pc" (click)="toggleSidebar()" *ngIf="authService.isAdmin()">
     <i class="fas fa-bars"></i>
   </button>
 
+  @if(authService.isloggedIn){
   <!-- Logo -->
   <div class="logo">
     <span class="logo-text">Gestion Bibliothèque</span>
   </div>
 
-  <!-- Profil utilisateur -->
-  <div class="profile" (click)="toggleProfileMenu()">
-    <img src="assets/images/profil.jpg" alt="Profil" class="profile-pic">
-    <span class="profile-name">Abdallah</span>
-    <i class="fas fa-chevron-down profile-chevron" [class.rotate]="profileMenuOpen"></i>
-    <ul class="profile-menu" [class.show]="profileMenuOpen">
-      <!-- <li><a href="#">Profil</a></li> -->
-      <li><a [routerLink]="['/listUserEmprunt']">Emprunt</a></li>
-      <li><a href="#">Déconnexion</a></li>
-    </ul>
-  </div>
+
+    <!-- Profil utilisateur -->
+    <div class="profile" (click)="toggleProfileMenu()">
+      <!-- <img src="assets/images/profil.jpg" alt="Profil" class="profile-pic"> -->
+      <strong class="avatar-letter">
+        {{ authService.loggedUser | slice:0:1 | uppercase }}
+      </strong>
+      <span class="profile-name">{{authService.loggedUser}}</span>
+      <i class="fas fa-chevron-down profile-chevron" [class.rotate]="profileMenuOpen"></i>
+      <ul class="profile-menu" [class.show]="profileMenuOpen">
+        <!-- <li><a href="#">Profil</a></li> -->
+        <li><a [routerLink]="['/listUserEmprunt']">Emprunt</a></li>
+        <li><a (click)="authService.logout()">Déconnexion</a></li>
+      </ul>
+    </div>
+  }@else {
+      <strong>Votre session a expirée, Veuillez vous connecter</strong>
+      <li><a class="dropdown-item" routerLink="/login">Se connecter</a></li>
+  }
 
   <!-- Hamburger mobile -->
-  <button class="hamburger-btn" (click)="toggleMenu()">
+  <button class="hamburger-btn" (click)="toggleMenu()" *ngIf="authService.isAdmin()">
     <i class="fas" [class.fa-bars]="!isMenuOpen" [class.fa-times]="isMenuOpen"></i>
   </button>
 </header>

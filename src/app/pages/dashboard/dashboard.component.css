@@ -163,3 +163,23 @@ body, html {
   .profile .profile-name { display: none; }
   .profile i.profile-chevron { display: none; }
 }
+
+
+.avatar-letter {
+  display: inline-flex;          /* centre le texte dans le cercle */
+  justify-content: center;
+  align-items: center;
+
+  width: 2.5rem;                 /* taille adaptative : change la racine pour agrandir */
+  height: 2.5rem;
+  border-radius: 50%;            /* cercle parfait */
+
+  font-size: 1rem;               /* taille de la lettre */
+  font-weight: 600;
+  color: #C8A2C8;                /* violet “text-purple” */
+  background: rgba(4, 26, 52, 0.671); /* fond léger */
+
+  /* Ombre douce */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  user-select: none;
+}

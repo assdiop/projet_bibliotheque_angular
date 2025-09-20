@@ -29,3 +29,64 @@
 .text-color{
   color: 162441;
 }
+
+.row-disabled {
+  opacity: 0.6;
+}
+.badge.rounded-pill {
+  padding: 0.45rem 0.65rem;
+  font-weight: 600;
+}
+
+.actions-cell {
+  display: flex;
+  flex-wrap: wrap;       /* permet de passer à la ligne si ça déborde */
+  justify-content: center; /* centre horizontalement */
+  gap: 0.25rem;          /* espace uniforme entre les boutons */
+}
+
+.actions-cell .btn {
+  flex: 0 1 auto;        /* chaque bouton garde sa taille auto */
+  white-space: nowrap;   /* le texte du bouton ne casse pas en 2 lignes */
+}
+
+/* 1) Table fixe */
+.table-fixed {
+  table-layout: fixed;    /* Respecte les widths définies dans <colgroup> */
+  width: 100%;
+}
+
+/* 2) Tronquer proprement les cellules texte longues */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;    /* une seule ligne, ... si ça dépasse */
+}
+
+/* 3) Cellule Actions: centrée + wrap sans déborder */
+.actions-cell {
+  display: flex;
+  flex-wrap: wrap;        /* passe à la ligne si nécessaire */
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+/* 4) Boutons compacts, ne cassent pas sur 2 lignes */
+.actions-cell .btn {
+  white-space: nowrap;    /* évite "Ajouter" sur une ligne et "ADMIN" en dessous */
+  flex: 0 1 auto;         /* garde une largeur auto, peut s'empiler */
+  max-width: 100%;
+}
+
+/* (Optionnel) Réduire légèrement la taille des boutons pour tenir sur 1 ligne */
+.actions-cell .btn.btn-sm {
+  padding: .25rem .4rem;
+  font-size: .8rem;
+}
+
+/* (Optionnel) Sur écrans très étroits, laisser plus de wrap aux actions */
+@media (max-width: 768px) {
+  .actions-cell {
+    justify-content: center;
+  }
+}
